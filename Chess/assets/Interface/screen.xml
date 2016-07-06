@@ -1,97 +1,75 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<nifty xmlns="http://nifty-gui.sourceforge.net/nifty-1.3.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://nifty-gui.sourceforge.net/nifty-1.3.xsd http://nifty-gui.sourceforge.net/nifty-1.3.xsd">
-    <!-- +++++++++++++++++++++++++++++++++++++++ -->
-    <!-- start screen -->
-    <!-- +++++++++++++++++++++++++++++++++++++++ -->
-    <useStyles filename="nifty-default-styles.xml" />
-    <useControls filename="nifty-default-controls.xml" />
-    <screen id="spiel" controller="mygame.Main" >
-        
-        <layer id="layer1" backgroundColor="#0000" childLayout="vertical" visibleToMouse="true" height="100%" width="100%">
-            <panel height="5%" width="100%" childLayout="horizontal">
-                <panel id="menue" height="85%" width="75%" align="left" childLayout="horizontal" backgroundColor="#0000">
-                <control name="button" label="Neues Spiel" id="start" align="center" valign="center">
-                    <interact onClick="neuesSpiel()"/> 
-                </control>
-                <control name="button" label="Spiel laden" id="load" align="center" valign="center">
-                    <interact onClick="loadGame()"/> 
-                </control>
-                <control name="button" label="Spiel speichern" id="save" align="center" valign="center">
-                    <interact onClick="saveGame()"/> 
-                </control>
-                <control name="button" label="Beenden" id="exit" align="center" valign="center">
-                    <interact onClick="quitGame()"/> 
-                </control>
-            </panel>
-            <panel id="history" height="0%" width="25%" align="right" backgroundColor="#0000" childLayout="vertical">
-                <panel childLayout="horizontal">
-                    <control id="historieW" name="listBox" vertical="optional" horizontal="off" displayItems="15" selectionMode="Single"></control>
-                    <control id="historieS" name="listBox" vertical="optional" horizontal="off" displayItems="15" selectionMode="Single"></control>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<nifty xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://nifty-gui.lessvoid.com/nifty-gui" xsi:schemaLocation="https://raw.githubusercontent.com/void256/nifty-gui/1.4/nifty-core/src/main/resources/nifty.xsd https://raw.githubusercontent.com/void256/nifty-gui/1.4/nifty-core/src/main/resources/nifty.xsd">
+    <useControls filename="nifty-default-controls.xml"/>
+    <useStyles filename="nifty-default-styles.xml"/>
+    <screen id="spiel" controller="mygame.Main">
+        <layer id="layer1" childLayout="vertical" backgroundColor="#0000" visibleToMouse="true" width="100%" height="100%">
+            <panel id="" childLayout="horizontal" width="100%" height="5%">
+                <panel id="menue" childLayout="horizontal" backgroundColor="#0000" width="75%" align="left" height="85%">
+                    <control name="button" id="start" valign="center" label="Neues Spiel" align="center"/>
+                    <control name="button" id="load" valign="center" label="Spiel laden" align="center"/>
+                    <control name="button" id="save" valign="center" label="Spiel speichern" align="center"/>
+                    <control name="button" id="exit" valign="center" label="Beenden" align="center"/>
                 </panel>
-                <control id="weiterspielenButton" name="button" label="Weiterspielen">
-                    <interact onClick="weiterspielen()"/>
-                </control>
-            </panel>
-            </panel>           
-            <panel id="board" height="80%" width="75%" align="left" backgroundColor="#0000" childLayout="center"></panel>            
-            <panel id="messages" height="15%" width="100%" align="center" backgroundColor="#0000" childLayout="vertical">                
-                <panel id="zugEingabe" height="35%" width="100%" align="center" childLayout="horizontal">
-                    <control name="label" text="Von:"></control>
-                    <control name="textfield" id="von" maxLength="2" width="20px"></control>
-                    <control name="label" text="Nach:"></control>
-                    <control name="textfield" id="nach" maxLength="2" width="20px"></control>
-                    <control name="button" label="Los" id="zieheButton">
-                        <interact onClick="zieheVonGui()"/>
-                    </control>
-                </panel>                
-                <control id="nachrichten" name="listBox" vertical="optional" horizontal="off" displayItems="5" selectionMode="Disabled"></control>                
-            </panel>
-            
-        </layer>        
-    </screen>
-    <screen id="start" controller="mygame.Main">
-        <layer id="layer3" backgroundColor="#000f" childLayout="vertical" visibleToMouse="true">
-            <panel id="controls" height="100%" width="100%" backgroundcolor="#ff81" childLayout="vertical">
-                <control name="textfield" id="ip" text="192.168.56.1:8000"></control>
-                <control id="farbwahl" name="radioButtonGroup" />
-                <panel childLayout="vertical">
-                    <panel childLayout="horizontal">
-                        <control name="label" text="Weiss" with="60px" />
-                        <control name="radioButton" id="weiss" group="farbwahl" />
+                <panel id="history" childLayout="vertical" backgroundColor="#0000" width="25%" align="right" height="0%">
+                    <panel id="GPanel3" childLayout="horizontal">
+                        <control name="listBox" id="historieW" horizontal="off" vertical="optional" selectionMode="Single" displayItems="15"/>
+                        <control name="listBox" id="historieS" horizontal="off" vertical="optional" selectionMode="Single" displayItems="15"/>
                     </panel>
-                    <panel childLayout="horizontal">
-                        <control name="label" text="Schwarz" with="60px" />
-                        <control name="radioButton" id="schwarz" group="farbwahl" />
-                    </panel>
+                    <control name="button" id="weiterspielenButton" label="Weiterspielen"/>
                 </panel>
-                <control name="label" text="Wähle ein Skin aus"/>
-                <control id="skin" name="radioButtonGroup"/>
-                <panel childLayout="vertical">
-                    <panel childLayout="horizontal">
-                        <control name="label" text="Marmor" with="60px" />
-                        <control name="radioButton" id="marmor" group="skin" />
-                    </panel>
-                    <panel childLayout="horizontal">
-                        <control name="label" text="Holz (Alt)" with="60px" />
-                        <control name="radioButton" id="holz_alt" group="skin" />
-                    </panel>
-                    <panel childLayout="horizontal">
-                        <control name="label" text="Holz (Jung)" with="60px" />
-                        <control name="radioButton" id="holz_jung" group="skin" />
-                    </panel>
-                    <panel childLayout="horizontal">
-                        <control name="label" text="Glas" with="60px" />
-                        <control name="radioButton" id="glas" group="skin" />
-                    </panel>
+            </panel>
+            <panel id="board" childLayout="center" backgroundColor="#0000" width="75%" align="left" height="80%"/>
+            <panel id="messages" childLayout="vertical" backgroundColor="#0000" width="100%" align="center" height="15%">
+                <panel id="zugEingabe" childLayout="horizontal" width="100%" align="center" height="35%">
+                    <control name="label" id="" text="Von:"/>
+                    <control name="textfield" id="von" width="20px" maxLength="2"/>
+                    <control name="label" id="GLabel1" text="Nach:"/>
+                    <control name="textfield" id="nach" width="20px" maxLength="2"/>
+                    <control name="button" id="zieheButton" label="Los"/>
                 </panel>
-                <control name="button" id="neuesSpiel" label="Spiel erstellen" align="center">
-                    <interact onClick="spielErstellen()"/>
-                </control>
-                <control name="button" id="spielBeitreten" label="Spiel beitreten" align="center">
-                    <interact onClick="spielBeitreten()"/>
-                </control>
+                <control name="listBox" id="nachrichten" horizontal="off" vertical="optional" selectionMode="Disabled" displayItems="5"/>
             </panel>
         </layer>
-        
+    </screen>
+    <screen id="start" controller="mygame.Main">
+        <layer id="layer3" childLayout="vertical" backgroundColor="#000f" visibleToMouse="true">
+            <panel id="controls" childLayout="vertical" width="100%" backgroundcolor="#ff81" height="100%">
+                <control name="textfield" id="ip" text="192.168.56.1:8000"/>
+                <control name="radioButtonGroup" id="farbwahl"/>
+                <panel id="GPanel8" childLayout="vertical">
+                    <panel id="GPanel9" childLayout="horizontal">
+                        <control name="label" id="GLabel2" with="60px" text="Weiss"/>
+                        <control name="radioButton" id="weiss" group="farbwahl"/>
+                    </panel>
+                    <panel id="GPanel10" childLayout="horizontal">
+                        <control name="label" id="GLabel3" with="60px" text="Schwarz"/>
+                        <control name="radioButton" id="schwarz" group="farbwahl"/>
+                    </panel>
+                </panel>
+                <control name="label" id="GLabel4" text="Wähle ein Skin aus"/>
+                <control name="radioButtonGroup" id="skin"/>
+                <panel id="GPanel11" childLayout="vertical">
+                    <panel id="GPanel12" childLayout="horizontal">
+                        <control name="label" id="GLabel5" with="60px" text="Marmor"/>
+                        <control name="radioButton" id="marmor" group="skin"/>
+                    </panel>
+                    <panel id="GPanel13" childLayout="horizontal">
+                        <control name="label" id="GLabel6" with="60px" text="Holz (Alt)"/>
+                        <control name="radioButton" id="holz_alt" group="skin"/>
+                    </panel>
+                    <panel id="GPanel14" childLayout="horizontal">
+                        <control name="label" id="GLabel7" with="60px" text="Holz (Jung)"/>
+                        <control name="radioButton" id="holz_jung" group="skin"/>
+                    </panel>
+                    <panel id="GPanel15" childLayout="horizontal">
+                        <control name="label" id="GLabel8" with="60px" text="Glas"/>
+                        <control name="radioButton" id="glas" group="skin"/>
+                    </panel>
+                </panel>
+                <control name="button" id="neuesSpiel" label="Spiel erstellen" align="center"/>
+                <control name="button" id="spielBeitreten" label="Spiel beitreten" align="center"/>
+            </panel>
+        </layer>
     </screen>
 </nifty>
