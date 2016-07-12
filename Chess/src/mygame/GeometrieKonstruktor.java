@@ -33,10 +33,9 @@ public class GeometrieKonstruktor {
     private String skinPfadFigur = "Models/Marmor/";
     private String skinPfadSchwarz = "Models/Marmor/KachelSchwarz/kachelS.j3o";
     private String skinPfadWeiss = "Models/Marmor/KachelWeiss/kachelW.j3o";
-    Map<String, String> markierteKacheln = new HashMap<String, String>();
-    private Map<String, Vector3f> positionen = new HashMap<String, Vector3f>();
-    private Map<String, Geometry> figurenPositionen = new HashMap<String, Geometry>();
-    private Node figurenS = new Node("figurenS");
+    Map<String, String> markierteKacheln = new HashMap<>();
+    private Map<String, Vector3f> positionen = new HashMap<>();
+    private Map<String, Geometry> figurenPositionen = new HashMap<>();
     private Node geschlagenW = new Node("geschlagenW");
     private Node figurenW = new Node("figurenW");
     Node schachbrett = new Node("chessboard");

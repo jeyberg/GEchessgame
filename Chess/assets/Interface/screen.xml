@@ -6,17 +6,27 @@
         <layer id="layer1" childLayout="vertical" backgroundColor="#0000" visibleToMouse="true" width="100%" height="100%">
             <panel id="" childLayout="horizontal" width="100%" height="5%">
                 <panel id="menue" childLayout="horizontal" backgroundColor="#0000" width="75%" align="left" height="85%">
-                    <control name="button" id="start" valign="center" label="Neues Spiel" align="center"/>
-                    <control name="button" id="load" valign="center" label="Spiel laden" align="center"/>
-                    <control name="button" id="save" valign="center" label="Spiel speichern" align="center"/>
-                    <control name="button" id="exit" valign="center" label="Beenden" align="center"/>
+                    <control name="button" label="Neues Spiel" id="start" align="center" valign="center">
+                    <interact onClick="neuesSpiel()"/> 
+                </control>
+                <control name="button" label="Spiel laden" id="load" align="center" valign="center">
+                    <interact onClick="ladenSpiel()"/> 
+                </control>
+                <control name="button" label="Spiel speichern" id="save" align="center" valign="center">
+                    <interact onClick="speichernSpiel()"/> 
+                </control>
+                <control name="button" label="Beenden" id="exit" align="center" valign="center">
+                    <interact onClick="verlassenSpiel()"/> 
+                </control>
                 </panel>
                 <panel id="history" childLayout="vertical" backgroundColor="#0000" width="25%" align="right" height="0%">
                     <panel id="GPanel3" childLayout="horizontal">
                         <control name="listBox" id="historieW" horizontal="off" vertical="optional" selectionMode="Single" displayItems="15"/>
                         <control name="listBox" id="historieS" horizontal="off" vertical="optional" selectionMode="Single" displayItems="15"/>
                     </panel>
-                    <control name="button" id="weiterspielenButton" label="Weiterspielen"/>
+                    <control id="weiterspielenButton" name="button" label="Weiterspielen">
+                    <interact onClick="weiterspielen()"/>
+                </control>
                 </panel>
             </panel>
             <panel id="board" childLayout="center" backgroundColor="#0000" width="75%" align="left" height="80%"/>
@@ -26,7 +36,9 @@
                     <control name="textfield" id="von" width="20px" maxLength="2"/>
                     <control name="label" id="GLabel1" text="Nach:"/>
                     <control name="textfield" id="nach" width="20px" maxLength="2"/>
-                    <control name="button" id="zieheButton" label="Los"/>
+                    <control name="button" label="Los" id="zieheButton">
+                        <interact onClick="zieheVonGui()"/>
+                    </control>
                 </panel>
                 <control name="listBox" id="nachrichten" horizontal="off" vertical="optional" selectionMode="Disabled" displayItems="5"/>
             </panel>
@@ -67,8 +79,12 @@
                         <control name="radioButton" id="glas" group="skin"/>
                     </panel>
                 </panel>
-                <control name="button" id="neuesSpiel" label="Spiel erstellen" align="center"/>
-                <control name="button" id="spielBeitreten" label="Spiel beitreten" align="center"/>
+                <control name="button" id="neuesSpiel" label="Spiel erstellen" align="center">
+                    <interact onClick="spielErstellen()"/>
+                </control>
+                <control name="button" id="spielBeitreten" label="Spiel beitreten" align="center">
+                    <interact onClick="spielBeitreten()"/>
+                </control>
             </panel>
         </layer>
     </screen>
